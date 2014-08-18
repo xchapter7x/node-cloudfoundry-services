@@ -1,0 +1,17 @@
+box: wercker/nodejs
+# Build definition
+build:
+  # The steps that will be executed on build
+  steps:
+    # A step that executes `npm install` command
+    - npm-install
+
+    - script:
+        name: install grunt-cli
+        code: |
+          npm install -g grunt-cli
+
+    - script:
+        name: grunt step nodejs
+        code: |
+          grunt
