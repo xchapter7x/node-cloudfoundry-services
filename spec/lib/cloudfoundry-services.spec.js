@@ -66,7 +66,7 @@ describe( "Cloudfoundry-Services helper class", function () {
 
     beforeEach(function () {
       controlInstanceName = "testInstance";
-      services = new VcapServices(defaultServiceName, controlInstanceName);
+      services = new VcapServices(defaultServiceName, controlInstanceName, defaultVcap);
     });
 
     it("should take 2 arguments and assigns them to serviceName & instanceName", function () {
@@ -81,11 +81,12 @@ describe( "Cloudfoundry-Services helper class", function () {
     });
 
     it("should set value in env.VCAP_SERVICES to vcapServices if not overwritten", function () {
+      services = new VcapServices(defaultServiceName, null, null);
       expect(services.vcapServices).toEqual(process.env.VCAP_SERVICES);
     });
 
-    it("should set instanceName to regex if undefined", function () {
-      services = new VcapServices(defaultServiceName);
+    it("should set instanceName to regex if undefined or null", function () {
+      services = new VcapServices(defaultServiceName, null, defaultVcap);
       expect(_.isRegExp(services.instanceName)).toEqual(true);
     });
   });

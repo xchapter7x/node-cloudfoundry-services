@@ -1,8 +1,20 @@
 var _ = require("underscore");
 
+function parseVcap() {
+  var vcap;
+
+  try {
+    vcap = JSON.parse(process.env.VCAP_SERVICES);
+    
+  } catch(e) {
+    vcap = process.env.VCAP_SERVICES;
+  }
+  return vcap;
+}
+
 var cfServices = function(serviceName, instanceName, vcap) {
   var defaultInstanceRegex = new RegExp(".*","g");
-  this.vcapServices = vcap || process.env.VCAP_SERVICES;
+  this.vcapServices = vcap || parseVcap();
   this.serviceName = serviceName;
   this.instanceName = instanceName || defaultInstanceRegex;
 };

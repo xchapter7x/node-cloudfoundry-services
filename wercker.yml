@@ -24,5 +24,9 @@ deploy:
           npm set init.author.name $NPM_NAME
           npm set init.author.email $NPM_EMAIL
           npm set init.author.url $NPM_URL
-          echo $NPM_LOGIN >> ~/.npmrc
+          npm adduser <<!
+          $NPM_USERNAME
+          $NPM_PASSWORD
+          $NPM_EMAIL
+          !
           npm publish ./
