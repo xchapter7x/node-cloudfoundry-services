@@ -1,8 +1,11 @@
-# cloudfoundry-services
+cloudfoundry-services
+=====================
 
-## Is a helper library to parse the VCAP_SERVICES env variables
-## to facilitate easy interaction with bound services in Cloud Foundry
+Is a helper library to parse the VCAP_SERVICES env variables
+------------------------------------------------------------
 
+to facilitate easy interaction with bound services in Cloud Foundry
+-------------------------------------------------------------------
 
 ### Constructor:
 
@@ -25,3 +28,15 @@ cfServices(serviceName, instanceName/*optional (string or regex)*/, vcap/*option
 **findAllCredentials()** - returns ALL service instance credentials objects matching 'serviceName'
 
 **findMatchingCredentials()** - returns ALL service instance credentials objects matching 'serviceName' & 'instanceName'
+
+Example Usage:
+
+```javascript
+
+var redisCloud = new BoundServicesHelper("rediscloud", new RegExp("regex-demo.*","g") );
+var redisCloudCreds = redisCloud.findFirstCredential();
+var port = redisCloudCreds.port;
+var host = redisCloudCreds.hostname;
+var pass = redisCloudCreds.password;
+
+```

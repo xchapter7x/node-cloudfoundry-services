@@ -1,11 +1,15 @@
 #!/bin/bash
 
+echo "running set init.author stuff ...."
 npm set init.author.name $NPM_NAME
 npm set init.author.email $NPM_EMAIL
 npm set init.author.url $NPM_URL
+
+
+echo "running adduser stuff ...."
 npm adduser <<!
-$NPM_USERNAME
-$NPM_PASSWORD
-$NPM_EMAIL
+${NPM_USERNAME}
+${NPM_PASSWORD}
+${NPM_EMAIL}
 !
 npm publish ./ --tag $WERCKER_GIT_COMMIT
